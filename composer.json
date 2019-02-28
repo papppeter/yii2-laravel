@@ -1,0 +1,15 @@
+{
+  "name": "papppeter/yii2-laravel",
+  "license": "proprietary",
+  "repositories": [
+    
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "papppeter\\yii2Laravel\\": ""
+    }
+  }
+}
