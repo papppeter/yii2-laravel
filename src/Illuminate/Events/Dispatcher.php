@@ -19,7 +19,7 @@ class Dispatcher extends Event {
     public function listen($events, $listener)
     {
         foreach ((array) $events as $event) {
-            app()->on($event, $listener);
+            \Yii::$app->on($event, $listener);
         }
     }
 
@@ -31,7 +31,7 @@ class Dispatcher extends Event {
      */
     public function hasListeners($eventName)
     {
-        return app()->hasEventHandlers($eventName);
+        return \Yii::$app->hasEventHandlers($eventName);
     }
 
     /**
@@ -68,7 +68,7 @@ class Dispatcher extends Event {
     public function dispatch($event, $payload = [], $halt = false)
     {
         if($event instanceof Event) {
-            return app()->trigger($event->name, $event);
+            return \Yii::$app->trigger($event->name, $event);
         }
 
         list($event, $payload) = $this->parseEventAndPayload(
@@ -81,7 +81,7 @@ class Dispatcher extends Event {
         $event->sender = $payload[1];
         $event->handled = $halt;
 
-        return app()->trigger($name, $event);
+        return \Yii::$app->trigger($name, $event);
     }
 
     /**
@@ -115,7 +115,7 @@ class Dispatcher extends Event {
      */
     public function forget($event)
     {
-        app()->off($event);
+        \Yii::$app->off($event);
     }
 
     /**
