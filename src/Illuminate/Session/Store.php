@@ -3,6 +3,7 @@ namespace papppeter\yii2Laravel\Illuminate\Session;
 
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Arr;
+use yii\base\NotSupportedException;
 
 /**
  *
@@ -166,7 +167,6 @@ class Store extends \yii\web\Session implements Session {
     public function handlerNeedsRequest()
     {
         return false;
-//        return $this->handler instanceof CookieSessionHandler;
     }
 
     /**
@@ -180,5 +180,30 @@ class Store extends \yii\web\Session implements Session {
         if ($this->handlerNeedsRequest()) {
             $this->handler->setRequest($request);
         }
+    }
+
+    public function pull($key, $default = null)
+    {
+        $value = $this->get($key, $default);
+        $this->offsetUnset($key);
+        return $value;
+    }
+
+    public function regenerateToken()
+    {
+        throw new NotSupportedException("pull is not supported.");
+    }
+
+    public function invalidate()
+    {
+        $success = $this->getIsActive();
+        $this->destroy();
+        return $success;
+    }
+
+    public function regenerate($destroy = false)
+    {
+        $this->regenerateID($destroy);
+        return $this->getId();
     }
 }

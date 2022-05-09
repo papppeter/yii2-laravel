@@ -1,15 +1,23 @@
 {
   "name": "papppeter/yii2-laravel",
-  "license": "MTI",
+  "license": "MIT",
+  "type": "yii2-extension",
+  "authors": [
+    {
+      "name": "Papp Péter",
+      "email": "papp.peter@p4it.hu"
+    }
+  ],
   "repositories": [
     
   ],
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.4",
+    "illuminate/support": "^8.83.11"
   },
   "autoload": {
     "psr-4": {
-      "papppeter\\yii2Laravel\\": ""
+      "papppeter\\yii2Laravel\\": "src/"
     }
   }
 }
