@@ -4,6 +4,7 @@ namespace papppeter\yii2Laravel\Illuminate\Events;
 use yii\base\Component;
 use yii\base\Event;
 use yii\base\UnknownMethodException;
+use Illuminate\Support\Arr;
 
 /**
  *
@@ -155,6 +156,6 @@ class Dispatcher extends Event {
             [$payload, $event] = [[$event], get_class($event)];
         }
 
-        return [$event, array_wrap($payload)];
+        return [$event, Arr::wrap($payload)];
     }
 }
